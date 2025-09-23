@@ -1,7 +1,7 @@
 resource "aws_instance" "this" {
   ami                    = var.ami # This is our devops-practice AMI ID
   vpc_security_group_ids = [data.aws_ssm_parameter.bastion_sg_id.value]
-  instance_type          = "t3.small"
+  instance_type          = "t3.large"
   subnet_id   = local.public_subnet_id
   associate_public_ip_address = true 
   # 20GB is not enough
