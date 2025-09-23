@@ -65,7 +65,7 @@ module "db" {
   )
 }
 
-resource "aws_route53_record" "www-dev" {
+resource "aws_route53_record" "expense-dev" {
   zone_id = var.zone_id
   name    = "mysql-${var.environment}"   # only subdomain
   type    = "CNAME"
