@@ -6,7 +6,7 @@ terraform {
     }
   }
 
-  backend s3 {
+  backend "s3" {
   bucket = "82-remote-state-pr-dev"
   key = "sg-infra-eks-rds"
   region = "us-east-1"
