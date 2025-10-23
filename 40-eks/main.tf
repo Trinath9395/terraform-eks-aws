@@ -8,7 +8,7 @@ module "eks" {
   version = "~> 20.0"
 
   cluster_name    = local.name
-  cluster_version = "1.32" # later we upgrade 1.32
+  cluster_version = "1.33" # later we upgrade 1.34
   create_node_security_group = false
   create_cluster_security_group = false
   cluster_security_group_id = local.eks_control_plane_sg_id
@@ -35,14 +35,14 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.micro", "t3.small", "m5n.large", "m5zn.large"]
+    instance_types = ["t3.large", "t3.small", "m5n.large", "m5zn.large"]
   }
 
   eks_managed_node_groups = {
-    blue = {
+  /*   blue = {
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       #ami_type       = "AL2_x86_64"
-      instance_types = ["t3.micro"]
+      instance_types = ["t3.large"]
       key_name = aws_key_pair.eks.key_name
 
       min_size     = 1
@@ -53,12 +53,12 @@ module "eks" {
         AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
         AmazonEKSLoadBalancingPolicy = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
       }
-    }
+    } */
 
     green = {
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       #ami_type       = "AL2_x86_64"
-      instance_types = ["t3.micro"]
+      instance_types = ["t3.large"]
       key_name = aws_key_pair.eks.key_name
 
       min_size     = 1
